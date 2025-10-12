@@ -58,8 +58,14 @@ jobs:
           php-version: '8.1'
           extensions: fileinfo, gd, mbstring
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build site
         uses: Cecilapp/Cecil-Action@v3
+        with:
+          args: '-v --baseurl="${{ steps.pages.outputs.base_url }}/"'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
